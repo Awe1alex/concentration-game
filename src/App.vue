@@ -1,10 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <header>
+      <b-navbar toggleable="sm" type="dark" variant="dark">
+        <b-navbar-brand href="/home">Concentration Game</b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav class="ml-auto text-left">
+            <b-nav-item href="/home">Home</b-nav-item>
+            <b-nav-item href="/game">The Game</b-nav-item>
+            <b-nav-item href="/instructions">Instructions</b-nav-item>
+            <b-nav-item href="/about">About Us</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </header>
   </div>
 </template>
 
@@ -15,18 +26,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
