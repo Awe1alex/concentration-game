@@ -1,3 +1,8 @@
 @import "variables";
 
 @import "~bootstrap/scss/bootstrap";
+
+body {
+  min-height: 100vh;
+  background-color: $gray-300;
+}
