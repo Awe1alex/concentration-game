@@ -5,7 +5,8 @@ export default () => {
     link = i % 2 === 0 ? link + 1 : link;
     array.push({
       id: i,
-      link: link
+      link: link,
+      clickable: true
     });
   }
   const shuffledArray = shuffle(array);
