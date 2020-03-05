@@ -1,12 +1,22 @@
+const colors = [
+  "red",
+  "yellow",
+  "blue",
+  "cyan",
+  "orange",
+  "purple",
+  "green",
+  "pink"
+];
+
 export default () => {
   const array = [];
-  let link = 0;
-  for (let i = 0; i < 16; i++) {
-    link = i % 2 === 0 ? link + 1 : link;
+  for (let i = 0; i < 8; i++) {
     array.push({
-      id: i,
-      link: link,
-      clickable: true
+      color: colors[i]
+    });
+    array.push({
+      color: colors[i]
     });
   }
   const shuffledArray = shuffle(array);

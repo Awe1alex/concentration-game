@@ -7,17 +7,101 @@ body {
   background-color: $gray-300;
 }
 
-.game-card {
-  border-radius: 10px;
+// .game-card {
+//   border-radius: 10px;
+//   width: 100%;
+//   height: 100px;
+//   background-color: #474747;
+//   border: 2px solid black;
+//   cursor: pointer;
+// }
+
+// .game-card.unclickable {
+//   background-color: transparent;
+//   border: none;
+//   cursor: default;
+// }
+
+.game-wrapper {
   width: 100%;
-  height: 100px;
-  background-color: #474747;
-  border: 2px solid black;
-  cursor: pointer;
+  padding-top: 130%;
+  position: relative;
 }
 
-.game-card.unclickable {
-  background-color: transparent;
-  border: none;
-  cursor: default;
+.game-container {
+  flex-wrap: wrap;
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.game-card {
+  height: calc(25% - 15px);
+  width: calc(25% - 15px);
+  margin: 7px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+
+.game-card:active {
+  transform: scale(0.95);
+  transition: transform 0.2s;
+}
+
+.game-card.clicked {
+  transform: rotateY(-180deg);
+}
+
+.face,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.4rem;
+  backface-visibility: hidden;
+}
+
+.face {
+  transform: rotateY(-180deg);
+}
+
+.back {
+  background-color: #4c525c;
+}
+
+.red {
+  background-color: #fc3523;
+}
+
+.yellow {
+  background-color: #dee655;
+}
+
+.blue {
+  background-color: #061191;
+}
+
+.cyan {
+  background-color: #74d6e3;
+}
+
+.orange {
+  background-color: #f79216;
+}
+
+.purple {
+  background-color: #a317b3;
+}
+
+.green {
+  background-color: #4fde2f;
+}
+
+.pink {
+  background-color: #ff5ce4;
 }

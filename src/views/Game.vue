@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-white h-100">
     <h1 class="text-center">The Concentration Game</h1>
     <div class="row">
       <div class="col-12 col-sm-6 col-sm-3">
@@ -11,21 +11,18 @@
       <div class="col-12 col-sm-6 col-sm-3">{{ clicked1 }}</div>
       <div class="col-12 col-sm-6 col-sm-3">{{ clicked2 }}</div>
     </div>
-    <div class="row">
-      <div
-        v-for="card in cards"
-        :key="card.id"
-        class="col-3 mt-4"
-        @click.prevent="cardClick(card.id, card.link, card.clickable)"
-      >
-        <card
-          class="cp"
-          :id="card.id"
-          :link="card.link"
-          :clickable="card.clickable"
-          :clicked1="card.id == clicked1"
-          :clicked2="card.id == clicked2"
-        />
+    <div class="game-wrapper">
+      <div class="game-container">
+        <div
+          v-for="(card, id) in cards"
+          :key="id"
+          class="game-card"
+          :class="{ clicked: clicked1 === id }"
+          @click="cardClick(id)"
+        >
+          <div class="face" :class="card.color"></div>
+          <div class="back"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -33,13 +30,9 @@
 
 <script>
 import generate from "../utils/geterate";
-import Card from "../components/Card";
 
 export default {
   name: "Game",
-  components: {
-    Card
-  },
   data() {
     return {
       score: 0,
@@ -63,27 +56,28 @@ export default {
       this.clicked2 = false;
       this.active = false;
     },
-    cardClick(id, link, clickable) {
-      if (clickable) {
-        if (this.clicked1 === false) {
-          this.clicked1 = id;
-          this.active = link;
-        } else {
-          if (this.clicked1 !== id) {
-            this.clicked2 = id;
-            if (this.active === link) {
-              this.removeCards(link);
-              this.score += this.turnScore;
-              this.resetTurn();
-            } else {
-              this.reducePoints();
-              this.active = false;
-              this.clearClicked();
-            }
-            this.clearClicked();
-          }
-        }
-      }
+    cardClick(id) {
+      this.clicked1 = id;
+      // if (clickable) {
+      //   if (this.clicked1 === false) {
+      //     this.clicked1 = id;
+      //     this.active = link;
+      //   } else {
+      //     if (this.clicked1 !== id) {
+      //       this.clicked2 = id;
+      //       if (this.active === link) {
+      //         this.removeCards(link);
+      //         this.score += this.turnScore;
+      //         this.resetTurn();
+      //       } else {
+      //         this.reducePoints();
+      //         this.active = false;
+      //         this.clearClicked();
+      //       }
+      //       this.clearClicked();
+      //     }
+      //   }
+      // }
     },
     resetTurn() {
       this.turnScore = 10;
