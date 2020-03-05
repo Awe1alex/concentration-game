@@ -1,28 +1,43 @@
 <template>
-  <div class="container bg-white h-100">
-    <h1 class="text-center">The Concentration Game</h1>
-    <div class="row">
+  <div class="container bg-white h-100 pb-5">
+    <h1 class="text-center">The Game</h1>
+    <div class="row text-center">
       <div class="col-12 col-sm-6 col-sm-3">
-        <h2>{{ score }}</h2>
+        <h2>{{ gameActive ? "Score:" : "Final Score:" }} {{ score }}</h2>
       </div>
       <div class="col-12 col-sm-6 col-sm-3">
-        <h2>{{ turnScore }}</h2>
+        <h2>
+          {{ gameActive ? `You willget ${turnScore} poits` : "Good Job!" }}
+        </h2>
       </div>
-      <div class="col-12 col-sm-6 col-sm-3">{{ clicked1 }}</div>
-      <div class="col-12 col-sm-6 col-sm-3">{{ clicked2 }}</div>
     </div>
     <div class="game-wrapper">
       <div class="game-container">
-        <div
+        <button
           v-for="(card, id) in cards"
           :key="id"
           class="game-card"
-          :class="{ clicked: clicked1 === id }"
-          @click="cardClick(id)"
+          :class="{
+            clicked:
+              clicked1 === id ||
+              clicked2 === id ||
+              usedColors.includes(card.color)
+          }"
+          :disabled="
+            clicked1 === id ||
+              clicked2 === id ||
+              usedColors.includes(card.color)
+          "
+          @click="cardClick(id, card.color)"
         >
           <div class="face" :class="card.color"></div>
           <div class="back"></div>
-        </div>
+        </button>
+      </div>
+      <div v-if="!gameActive" class="start-game">
+        <button class="btn btn-primary btn-lg cp" @click="startGame()">
+          Start New Game
+        </button>
       </div>
     </div>
   </div>
@@ -36,12 +51,14 @@ export default {
   data() {
     return {
       score: 0,
-      turnScore: 10,
+      turnScore: 100,
       bestScore: false,
       cards: [],
       clicked1: false,
       clicked2: false,
-      active: false
+      active: false,
+      usedColors: [],
+      gameActive: true
     };
   },
   mounted() {
@@ -54,51 +71,53 @@ export default {
       this.resetTurn();
       this.clicked1 = false;
       this.clicked2 = false;
-      this.active = false;
+      this.activeColor = false;
+      this.gameActive = true;
+      this.usedColors = [];
     },
-    cardClick(id) {
-      this.clicked1 = id;
-      // if (clickable) {
-      //   if (this.clicked1 === false) {
-      //     this.clicked1 = id;
-      //     this.active = link;
-      //   } else {
-      //     if (this.clicked1 !== id) {
-      //       this.clicked2 = id;
-      //       if (this.active === link) {
-      //         this.removeCards(link);
-      //         this.score += this.turnScore;
-      //         this.resetTurn();
-      //       } else {
-      //         this.reducePoints();
-      //         this.active = false;
-      //         this.clearClicked();
-      //       }
-      //       this.clearClicked();
-      //     }
-      //   }
-      // }
+    cardClick(id, color) {
+      // First card clicked
+      if (this.clicked1 === false) {
+        this.clicked1 = id;
+        this.activeColor = color;
+      }
+      // Second card clicked
+      else if (this.clicked2 === false) {
+        this.clicked2 = id;
+        // Check if color match
+        if (this.activeColor === color) {
+          // AddScore
+          this.score += this.turnScore;
+          // Add color as used
+          this.usedColors.push(color);
+          if (this.usedColors.length === 8) {
+            this.endGame();
+          }
+          this.resetTurn();
+        }
+        // Reduce points
+        else {
+          this.reducePoints();
+        }
+        setTimeout(() => {
+          this.clearClicked();
+        }, 300);
+      }
     },
     resetTurn() {
-      this.turnScore = 10;
+      this.turnScore = 100;
     },
     reducePoints() {
       if (this.turnScore > 0) {
-        this.turnScore -= 1;
+        this.turnScore -= 5;
       }
     },
     clearClicked() {
       this.clicked1 = false;
       this.clicked2 = false;
     },
-    removeCards(l) {
-      const cards = this.cards.map(el => {
-        if (el.link === l) {
-          el.clickable = false;
-        }
-        return el;
-      });
-      this.cards = cards;
+    endGame() {
+      this.gameActive = false;
     }
   }
 };

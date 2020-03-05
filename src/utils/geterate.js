@@ -19,8 +19,8 @@ export default () => {
       color: colors[i]
     });
   }
-  const shuffledArray = shuffle(array);
-  return shuffledArray;
+  shuffle(array);
+  return array;
 };
 
 function shuffle(a) {
