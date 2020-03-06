@@ -7,6 +7,17 @@ body {
   background-color: $gray-300;
 }
 
+.game-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-col {
+  max-width: 460px;
+  width: 100%;
+}
+
 .game-wrapper {
   width: 100%;
   padding-top: 130%;

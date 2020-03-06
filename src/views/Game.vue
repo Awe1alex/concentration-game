@@ -11,33 +11,37 @@
         </h2>
       </div>
     </div>
-    <div class="game-wrapper">
-      <div class="game-container">
-        <button
-          v-for="(card, id) in cards"
-          :key="id"
-          class="game-card"
-          :class="{
-            clicked:
-              clicked1 === id ||
-              clicked2 === id ||
-              usedColors.includes(card.color)
-          }"
-          :disabled="
-            clicked1 === id ||
-              clicked2 === id ||
-              usedColors.includes(card.color)
-          "
-          @click="cardClick(id, card.color)"
-        >
-          <div class="face" :class="card.color"></div>
-          <div class="back"></div>
-        </button>
-      </div>
-      <div v-if="!gameActive" class="start-game">
-        <button class="btn btn-primary btn-lg cp" @click="startGame()">
-          Start New Game
-        </button>
+    <div class="game-row">
+      <div class="game-col">
+        <div class="game-wrapper">
+          <div class="game-container">
+            <button
+              v-for="(card, id) in cards"
+              :key="id"
+              class="game-card"
+              :class="{
+                clicked:
+                  clicked1 === id ||
+                  clicked2 === id ||
+                  usedColors.includes(card.color)
+              }"
+              :disabled="
+                clicked1 === id ||
+                  clicked2 === id ||
+                  usedColors.includes(card.color)
+              "
+              @click="cardClick(id, card.color)"
+            >
+              <div class="face" :class="card.color"></div>
+              <div class="back"></div>
+            </button>
+          </div>
+          <div v-if="!gameActive" class="start-game">
+            <button class="btn btn-primary btn-lg cp" @click="startGame()">
+              Start New Game
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
