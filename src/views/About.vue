@@ -1,6 +1,6 @@
 <template>
-  <div class="container bg-white">
-    <h1 class="mt-4">About Us</h1>
+  <div class="container bg-white py-5 fullpage">
+    <h1 class="text-center">About Us</h1>
     <h2>Lorem, ipsum dolor.</h2>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo in eum vero

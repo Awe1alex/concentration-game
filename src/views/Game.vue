@@ -1,14 +1,14 @@
 <template>
-  <div class="container bg-white h-100 pb-5">
+  <div class="container bg-white h-100 pt-2 fullpage">
     <h1 class="text-center">The Game</h1>
-    <div class="row text-center">
-      <div class="col-12 col-sm-6 col-sm-3">
-        <h2>{{ gameActive ? "Score:" : "Final Score:" }} {{ score }}</h2>
+    <div class="row text-center justify-content-center">
+      <div class="mr-5">
+        <h4>{{ gameActive ? "Score:" : "Final Score:" }} {{ score }}</h4>
       </div>
-      <div class="col-12 col-sm-6 col-sm-3">
-        <h2>
-          {{ gameActive ? `You willget ${turnScore} poits` : "Good Job!" }}
-        </h2>
+      <div class>
+        <h4>
+          {{ gameActive ? `You will get ${turnScore} points` : "Good Job!" }}
+        </h4>
       </div>
     </div>
     <div class="game-row">

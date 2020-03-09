@@ -2,9 +2,15 @@
 
 @import "~bootstrap/scss/bootstrap";
 
-body {
-  min-height: 100vh;
+html,
+body,
+#app {
+  height: 100vh;
   background-color: $gray-300;
+}
+
+.fullpage {
+  min-height: calc(100% - 53px);
 }
 
 .game-row {
