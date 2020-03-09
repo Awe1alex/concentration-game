@@ -1,6 +1,8 @@
 <template>
   <div>
-    Instructions
+    <div class="container bg-white">
+      <h1>Instructions</h1>
+    </div>
   </div>
 </template>
 
