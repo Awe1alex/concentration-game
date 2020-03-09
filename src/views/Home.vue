@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-white">
     <h1 class="mt-4">
       Concentration game
     </h1>
