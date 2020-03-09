@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-white">
     <h1 class="mt-4">About Us</h1>
     <h2>Lorem, ipsum dolor.</h2>
     <p>
