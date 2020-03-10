@@ -1,11 +1,14 @@
 # concentrationgame
 
+Test project which represents concentration game.
+This project was made using Vue.js
+
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles for development and available with hot-reload at localhost:8080(if 8080 is not reserved)
 ```
 npm run serve
 ```
@@ -14,11 +17,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
