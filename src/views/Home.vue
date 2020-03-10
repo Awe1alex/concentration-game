@@ -10,11 +10,11 @@
     </p>
     <h3 class="text-center">
       Try it out
-      <router-link to="/game">here</router-link>
+      <router-link to="/game">here</router-link>.
     </h3>
     <h6 class="text-center mt-3">
       You also can check game instructions
-      <router-link to="/instructions">here</router-link>
+      <router-link to="/instructions">here</router-link>.
     </h6>
   </div>
 </template>
